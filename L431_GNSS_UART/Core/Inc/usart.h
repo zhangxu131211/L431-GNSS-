@@ -40,10 +40,21 @@ extern UART_HandleTypeDef huart2;
 
 /* USER CODE END Private defines */
 
-void MX_USART1_UART_Init(void);
+void MX_USART1_UART_Init(uint32_t bound);
 void MX_USART2_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
+// 缓冲区大小宏定义（按需修改）
+#define USART1_MAX_SEND_LEN    400  // 最大发送字节数
+#define USART1_MAX_RECV_LEN    400  // 最大接收字节数
+//#define USART2_RX_TIMEOUT_MS   10    // 接收超时阈值（10ms）
+
+// 串口发送缓冲区（8字节对齐，HAL库兼容）
+extern uint8_t USART1_TX_BUF[USART1_MAX_SEND_LEN];  // HAL库推荐用__ALIGN_BEGIN/END
+// 串口接收缓冲区
+extern uint8_t USART1_RX_BUF[USART1_MAX_RECV_LEN];
+extern volatile uint16_t USART1_RX_STA;    
+
 
 /* USER CODE END Prototypes */
 

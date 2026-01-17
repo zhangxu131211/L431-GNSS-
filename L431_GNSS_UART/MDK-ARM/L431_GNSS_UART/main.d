@@ -38,3 +38,4 @@ l431_gnss_uart\main.o: ../Core/Inc/rtc.h
 l431_gnss_uart\main.o: ../Core/Inc/tim.h
 l431_gnss_uart\main.o: ../Core/Inc/usart.h
 l431_gnss_uart\main.o: ../Core/Inc/gpio.h
+l431_gnss_uart\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

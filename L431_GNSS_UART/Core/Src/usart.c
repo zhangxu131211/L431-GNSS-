@@ -19,17 +19,26 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "usart.h"
+#include "tim.h"
+#include <stdio.h>
+#include <stdarg.h>
 
-/* USER CODE BEGIN 0 */
 
-/* USER CODE END 0 */
+// 串口发送缓冲区（8字节对齐，HAL库兼容）
+__ALIGN_BEGIN uint8_t USART1_TX_BUF[USART1_MAX_SEND_LEN] __ALIGN_END;  // HAL库推荐用__ALIGN_BEGIN/END
+// 串口接收缓冲区
+uint8_t USART1_RX_BUF[USART1_MAX_RECV_LEN];
+
+// 接收状态标记（HAL库适配版，功能与原逻辑一致）
+// [15]：1=接收完成（一批数据）；0=未完成
+// [14:0]：接收的有效数据长度
+volatile uint16_t USART1_RX_STA = 0;    
 
 UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
 
 /* USART1 init function */
-
-void MX_USART1_UART_Init(void)
+void MX_USART1_UART_Init(uint32_t bound)
 {
 
   /* USER CODE BEGIN USART1_Init 0 */
@@ -40,7 +49,7 @@ void MX_USART1_UART_Init(void)
 
   /* USER CODE END USART1_Init 1 */
   huart1.Instance = USART1;
-  huart1.Init.BaudRate = 115200;
+  huart1.Init.BaudRate = bound;
   huart1.Init.WordLength = UART_WORDLENGTH_8B;
   huart1.Init.StopBits = UART_STOPBITS_1;
   huart1.Init.Parity = UART_PARITY_NONE;
@@ -54,7 +63,9 @@ void MX_USART1_UART_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN USART1_Init 2 */
-
+  MX_TIM6_Init(99,7999);
+  __HAL_TIM_DISABLE(&htim6);   //关闭定时器3 
+	USART1_RX_STA=0;				    //清零 
   /* USER CODE END USART1_Init 2 */
 
 }
@@ -217,5 +228,50 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 }
 
 /* USER CODE BEGIN 1 */
+///重定向c库函数printf到串口USARTx，重定向后可使用printf函数
+int fputc(int ch, FILE *f)
+{
+    /* 发送一个字节数据到串口USARTx */
+	HAL_UART_Transmit(&huart2, (uint8_t *)&ch, 1, 0xFFFF);
+	return (ch);
+}
 
+///重定向c库函数scanf到串口USARTx，重写向后可使用scanf、getchar等函数
+int fgetc(FILE *f)
+{	
+	int ch;
+	/* 等待串口输入数据 */
+	while(__HAL_UART_GET_FLAG(&huart2, UART_FLAG_RXNE) == RESET);
+	__HAL_UART_CLEAR_OREFLAG(&huart2);
+	HAL_UART_Receive(&huart2, (uint8_t *)&ch, 1, 0xFFFF);
+	return (ch);
+}
+
+/**
+  * @brief  串口1格式化输出函数（HAL库版）
+  * @note   确保一次发送数据不超过USART1_MAX_SEND_LEN字节，兼容printf格式化语法
+  * @param  fmt: 格式化字符串（如"GPS数据：%s\r\n"）
+  * @retval 无
+  */
+void u1_printf(char* fmt, ...)  
+{  
+    va_list ap;
+    uint16_t send_len = 0;
+
+    // 1. 格式化拼接字符串到发送缓冲区
+    va_start(ap, fmt);
+    // vsnprintf替代vsprintf，避免缓冲区溢出（第三个参数限制最大长度）
+    send_len = vsnprintf((char*)USART1_TX_BUF, USART1_MAX_SEND_LEN, fmt, ap);
+    va_end(ap);
+
+    // 2. 容错处理：若拼接长度超过缓冲区，强制截断到最大值
+    if (send_len >= USART1_MAX_SEND_LEN)
+    {
+        send_len = USART1_MAX_SEND_LEN - 1; // 预留'\0'位置，避免越界
+    }
+
+    // 3. HAL库串口阻塞发送（直到发送完成）
+    // 最后一个参数：超时时间（单位ms），设为HAL_MAX_DELAY表示无限等待
+    HAL_UART_Transmit(&huart1, USART1_TX_BUF, send_len, HAL_MAX_DELAY);
+}
 /* USER CODE END 1 */

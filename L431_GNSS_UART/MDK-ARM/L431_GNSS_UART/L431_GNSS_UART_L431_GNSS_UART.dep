@@ -1,7 +1,7 @@
 Dependencies for Project 'L431_GNSS_UART', Target 'L431_GNSS_UART': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
 F (startup_stm32l431xx.s)(0x696AFC52)(--cpu Cortex-M4.fp.sp -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\_L431_GNSS_UART-ID:\Keil_v5\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include--pd "__UVISION_VERSION SETA 536" --pd "_RTE_ SETA 1" --pd "STM32L431xx SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32l431xx.lst --xref -o l431_gnss_uart\startup_stm32l431xx.o --depend l431_gnss_uart\startup_stm32l431xx.d)
-F (../Core/Src/main.c)(0x696AFC4D)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_L431_GNSS_UART-ID:\Keil_v5\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32L431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L431xx-o l431_gnss_uart\main.o --omf_browse l431_gnss_uart\main.crf --depend l431_gnss_uart\main.d)
+F (../Core/Src/main.c)(0x696B3AB0)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_L431_GNSS_UART-ID:\Keil_v5\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32L431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L431xx-o l431_gnss_uart\main.o --omf_browse l431_gnss_uart\main.crf --depend l431_gnss_uart\main.d)
 I (../Core/Inc/main.h)(0x696AFC4C)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h)(0x695393A1)
 I (../Core/Inc/stm32l4xx_hal_conf.h)(0x696AFC4C)
@@ -37,9 +37,10 @@ I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h)(0x695393A1)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h)(0x695393A1)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h)(0x695393A1)
 I (../Core/Inc/rtc.h)(0x696AFC4A)
-I (../Core/Inc/tim.h)(0x696AFC4B)
-I (../Core/Inc/usart.h)(0x696AFC4B)
+I (../Core/Inc/tim.h)(0x696B32F4)
+I (../Core/Inc/usart.h)(0x696B3581)
 I (../Core/Inc/gpio.h)(0x696AFC4A)
+I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x60252374)
 F (../Core/Src/gpio.c)(0x696AFC49)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_L431_GNSS_UART-ID:\Keil_v5\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32L431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L431xx-o l431_gnss_uart\gpio.o --omf_browse l431_gnss_uart\gpio.crf --depend l431_gnss_uart\gpio.d)
 I (../Core/Inc/gpio.h)(0x696AFC4A)
 I (../Core/Inc/main.h)(0x696AFC4C)
@@ -112,8 +113,8 @@ I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h)(0x695393A1)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h)(0x695393A1)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h)(0x695393A1)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h)(0x695393A1)
-F (../Core/Src/tim.c)(0x696AFC4A)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_L431_GNSS_UART-ID:\Keil_v5\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32L431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L431xx-o l431_gnss_uart\tim.o --omf_browse l431_gnss_uart\tim.crf --depend l431_gnss_uart\tim.d)
-I (../Core/Inc/tim.h)(0x696AFC4B)
+F (../Core/Src/tim.c)(0x696B32F4)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_L431_GNSS_UART-ID:\Keil_v5\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32L431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L431xx-o l431_gnss_uart\tim.o --omf_browse l431_gnss_uart\tim.crf --depend l431_gnss_uart\tim.d)
+I (../Core/Inc/tim.h)(0x696B32F4)
 I (../Core/Inc/main.h)(0x696AFC4C)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h)(0x695393A1)
 I (../Core/Inc/stm32l4xx_hal_conf.h)(0x696AFC4C)
@@ -148,8 +149,8 @@ I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h)(0x695393A1)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h)(0x695393A1)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h)(0x695393A1)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h)(0x695393A1)
-F (../Core/Src/usart.c)(0x696AFC4B)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_L431_GNSS_UART-ID:\Keil_v5\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32L431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L431xx-o l431_gnss_uart\usart.o --omf_browse l431_gnss_uart\usart.crf --depend l431_gnss_uart\usart.d)
-I (../Core/Inc/usart.h)(0x696AFC4B)
+F (../Core/Src/usart.c)(0x696B3581)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_L431_GNSS_UART-ID:\Keil_v5\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32L431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L431xx-o l431_gnss_uart\usart.o --omf_browse l431_gnss_uart\usart.crf --depend l431_gnss_uart\usart.d)
+I (../Core/Inc/usart.h)(0x696B3581)
 I (../Core/Inc/main.h)(0x696AFC4C)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h)(0x695393A1)
 I (../Core/Inc/stm32l4xx_hal_conf.h)(0x696AFC4C)
@@ -184,7 +185,10 @@ I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h)(0x695393A1)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h)(0x695393A1)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h)(0x695393A1)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h)(0x695393A1)
-F (../Core/Src/stm32l4xx_it.c)(0x696AFC4B)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_L431_GNSS_UART-ID:\Keil_v5\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32L431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L431xx-o l431_gnss_uart\stm32l4xx_it.o --omf_browse l431_gnss_uart\stm32l4xx_it.crf --depend l431_gnss_uart\stm32l4xx_it.d)
+I (../Core/Inc/tim.h)(0x696B32F4)
+I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x60252374)
+I (D:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x60252376)
+F (../Core/Src/stm32l4xx_it.c)(0x696B32F4)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_L431_GNSS_UART-ID:\Keil_v5\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32L431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L431xx-o l431_gnss_uart\stm32l4xx_it.o --omf_browse l431_gnss_uart\stm32l4xx_it.crf --depend l431_gnss_uart\stm32l4xx_it.d)
 I (../Core/Inc/main.h)(0x696AFC4C)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h)(0x695393A1)
 I (../Core/Inc/stm32l4xx_hal_conf.h)(0x696AFC4C)
@@ -220,6 +224,8 @@ I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h)(0x695393A1)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h)(0x695393A1)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h)(0x695393A1)
 I (../Core/Inc/stm32l4xx_it.h)(0x696AFC4B)
+I (../Core/Inc/usart.h)(0x696B3581)
+I (../Core/Inc/tim.h)(0x696B32F4)
 F (../Core/Src/stm32l4xx_hal_msp.c)(0x696AFC4B)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_L431_GNSS_UART-ID:\Keil_v5\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32L431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L431xx-o l431_gnss_uart\stm32l4xx_hal_msp.o --omf_browse l431_gnss_uart\stm32l4xx_hal_msp.crf --depend l431_gnss_uart\stm32l4xx_hal_msp.d)
 I (../Core/Inc/main.h)(0x696AFC4C)
 I (../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h)(0x695393A1)

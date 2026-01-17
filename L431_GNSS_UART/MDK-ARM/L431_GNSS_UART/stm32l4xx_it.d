@@ -35,3 +35,5 @@ l431_gnss_uart\stm32l4xx_it.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal
 l431_gnss_uart\stm32l4xx_it.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h
 l431_gnss_uart\stm32l4xx_it.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h
 l431_gnss_uart\stm32l4xx_it.o: ../Core/Inc/stm32l4xx_it.h
+l431_gnss_uart\stm32l4xx_it.o: ../Core/Inc/usart.h
+l431_gnss_uart\stm32l4xx_it.o: ../Core/Inc/tim.h

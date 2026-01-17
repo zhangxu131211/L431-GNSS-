@@ -25,40 +25,14 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <stdio.h>
 /* USER CODE END Includes */
 
-/* Private typedef -----------------------------------------------------------*/
-/* USER CODE BEGIN PTD */
+uint8_t USART2_TX_BUF[USART1_MAX_RECV_LEN]; 					//串口2,发送缓存区
 
-/* USER CODE END PTD */
 
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */
-
-/* USER CODE END PD */
-
-/* Private macro -------------------------------------------------------------*/
-/* USER CODE BEGIN PM */
-
-/* USER CODE END PM */
-
-/* Private variables ---------------------------------------------------------*/
-
-/* USER CODE BEGIN PV */
-
-/* USER CODE END PV */
-
-/* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-/* USER CODE BEGIN PFP */
 
-/* USER CODE END PFP */
-
-/* Private user code ---------------------------------------------------------*/
-/* USER CODE BEGIN 0 */
-
-/* USER CODE END 0 */
 
 /**
   * @brief  The application entry point.
@@ -66,6 +40,11 @@ void SystemClock_Config(void);
   */
 int main(void)
 {
+	uint16_t i,rxlen;
+//	uint16_t lenx;
+//	uint8_t key=0XFF;
+	uint8_t upload=0;
+	uint8_t stop=0;
 
   /* USER CODE BEGIN 1 */
 
@@ -89,18 +68,39 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_TIM6_Init();
-  MX_USART1_UART_Init();
+  MX_TIM6_Init(99,7999);
+  MX_USART1_UART_Init(115200);
   MX_USART2_UART_Init();
   MX_RTC_Init();
   /* USER CODE BEGIN 2 */
-
+	printf("init\r\n");
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+         HAL_Delay(1);
+		 if(USART1_RX_STA&0X8000)		//接收到一次数据了
+		 {
+			 
+		    rxlen=USART1_RX_STA&0X7FFF;	//得到数据长度
+			for(i=0;i<rxlen;i++)USART2_TX_BUF[i]=USART1_RX_BUF[i];	   
+ 			USART1_RX_STA=0;		   	//启动下一次接收
+			USART2_TX_BUF[i]=0;			//自动添加结束符
+	       
+			 if(!stop)
+			 {
+				 if(upload) printf("\r\n%s\r\n",USART2_TX_BUF);//发送接收到的数据到串口1 
+				 else
+				 {
+//					GPS_Analysis(&gpsx,(u8*)USART2_TX_BUF);//分析字符串
+//					Gps_Msg_Show();			//显示信息
+//                    printf("\r\n");					 
+				 }
+			 }
+			
+		 }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

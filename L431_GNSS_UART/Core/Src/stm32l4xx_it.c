@@ -22,6 +22,8 @@
 #include "stm32l4xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "usart.h"
+#include "tim.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -231,29 +233,64 @@ void USART1_IRQHandler(void)
 /**
   * @brief This function handles USART2 global interrupt.
   */
+//void USART2_IRQHandler(void)
+//{
+//  /* USER CODE BEGIN USART2_IRQn 0 */
+
+//  /* USER CODE END USART2_IRQn 0 */
+//  HAL_UART_IRQHandler(&huart2);
+//  /* USER CODE BEGIN USART2_IRQn 1 */
+
+//  /* USER CODE END USART2_IRQn 1 */
+//}
 void USART2_IRQHandler(void)
 {
-  /* USER CODE BEGIN USART2_IRQn 0 */
-
-  /* USER CODE END USART2_IRQn 0 */
-  HAL_UART_IRQHandler(&huart2);
-  /* USER CODE BEGIN USART2_IRQn 1 */
-
-  /* USER CODE END USART2_IRQn 1 */
-}
-
+	uint8_t res;
+	if((__HAL_UART_GET_FLAG(&huart1,UART_FLAG_RXNE)!=RESET))  //接收中断(接收到的数据必须是0x0d 0x0a结尾)
+	{
+        HAL_UART_Receive(&huart1,&res,1,1000); 
+		if((USART1_RX_STA&(1<<15))==0)//接收完的一批数据,还没有被处理,则不再接收其他数据
+		{ 
+			if(USART1_RX_STA<USART1_MAX_RECV_LEN)	//还可以接收数据
+			{
+                __HAL_TIM_SET_COUNTER(&htim6,0);	//计数器清空			
+				if(USART1_RX_STA==0) 				//使能定时器3的中断 
+				{
+                    __HAL_TIM_ENABLE(&htim6); //使能定时器3
+				}
+				USART1_RX_BUF[USART1_RX_STA++]=res;	//记录接收到的值	 
+			}else 
+			{
+				USART1_RX_STA|=1<<15;				//强制标记接收完成
+			} 
+		}
+    }         													 
+} 
 /**
   * @brief This function handles TIM6 global interrupt, DAC channel1 and channel2 underrun error interrupts.
   */
+//void TIM6_DAC_IRQHandler(void)
+//{
+//  /* USER CODE BEGIN TIM6_DAC_IRQn 0 */
+
+//  /* USER CODE END TIM6_DAC_IRQn 0 */
+//  HAL_TIM_IRQHandler(&htim6);
+//  /* USER CODE BEGIN TIM6_DAC_IRQn 1 */
+
+//  /* USER CODE END TIM6_DAC_IRQn 1 */
+//}
+
+//定时器3中断服务函数
 void TIM6_DAC_IRQHandler(void)
 {
-  /* USER CODE BEGIN TIM6_DAC_IRQn 0 */
-
-  /* USER CODE END TIM6_DAC_IRQn 0 */
-  HAL_TIM_IRQHandler(&htim6);
-  /* USER CODE BEGIN TIM6_DAC_IRQn 1 */
-
-  /* USER CODE END TIM6_DAC_IRQn 1 */
+   
+	if(__HAL_TIM_GET_FLAG(&htim6,TIM_FLAG_UPDATE)!=RESET)    //更新中断
+    {
+        __HAL_TIM_CLEAR_IT(&htim6,TIM_IT_UPDATE);            //清除中断
+        USART1_RX_STA|=1<<15;	                                    //标记接收完成
+        __HAL_TIM_DISABLE(&htim6);                           //关闭定时器7 
+    }
+		
 }
 
 /* USER CODE BEGIN 1 */
